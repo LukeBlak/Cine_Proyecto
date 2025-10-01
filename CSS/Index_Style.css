@@ -1,3 +1,7 @@
+html {
+    background-color: #370617;
+}
+
 header {
     text-align: center;
     background-color: #03071E;
@@ -5,4 +9,27 @@ header {
     font-family: "Bitcount Prop Single Ink", system-ui;
     border-radius: 10px;
     font-size: large;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #03071E;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
