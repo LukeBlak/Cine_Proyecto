@@ -1,3 +1,8 @@
 header {
     text-align: center;
+    background-color: #03071E;
+    color: white;
+    font-family: "Bitcount Prop Single Ink", system-ui;
+    border-radius: 10px;
+    font-size: large;
 }
