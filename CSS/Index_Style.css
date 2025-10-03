@@ -13,10 +13,15 @@ header {
     padding: 10px 32px;
 }
 
+header h1 {
+    vertical-align: middle;
+}
+
 header img {    
-    width: 48px;
+    width: 80px;
     height: auto;
-    margin-right: 16px;
+    margin-right: 10px;
+    vertical-align: middle;
 }
 
 .menu {
