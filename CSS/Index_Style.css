@@ -3,12 +3,20 @@ html {
 }
 
 header {
-    text-align: center;
+    display: flex;
+    align-items: center;
     background-color: #03071E;
     color: white;
     font-family: "Bitcount Prop Single Ink", system-ui;
     border-radius: 10px;
-    font-size: large;
+    font-size: 20px;
+    padding: 10px 20px;
+}
+
+header img {    
+    width: 48px;      /* Ajusta el tamaño según lo que prefieras */
+    height: auto;
+    margin-right: 16px;
 }
 
 ul {
@@ -32,4 +40,14 @@ li a {
     padding: 14px 16px;
     text-decoration: none;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+li a:hover {
+    background-color: #D00000;
+}
+
+footer {
+    text-align: left;
+    background-color: #03071E;
+    color: white;
 }
