@@ -1,0 +1,95 @@
+html {
+    background-color: #370617;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    background-color: #03071E;
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 10px 32px;
+}
+
+header h1 {
+    vertical-align: middle;
+    font-family: "Bitcount Prop Single Ink", system-ui
+}
+
+h2{
+    display: flex;
+    align-items: center;
+    background-color: #03071E;
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 10px 32px;
+}
+header img {    
+    width: 80px;
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.menu {
+    margin-left: 32px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #03071E;
+    border-radius: 10px;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+li a:hover {
+    background-color: #D00000;
+}
+
+.busqueda {
+    display: flex;
+    align-items: center;
+    margin-left: 32px;
+}
+
+.busqueda input[type="text"] {
+    padding: 6px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 4px;
+}
+
+.busqueda button {
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.busqueda button:hover {
+    background-color: #6A040F;
+}
+
+footer {
+    text-align: left;
+    background-color: #03071E;
+    color: white;
+}

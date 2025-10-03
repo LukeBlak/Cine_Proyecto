@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Estilo Coherente</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./CSS/Forms_Style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Playball&display=swap" 
+rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img src="IMG/Star.png" alt="Logo de CineStar">
+        <h1>CineStar</h1>
+        <nav class="menu">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Cartelera</a></li>
+                <li><a href="#">Dulcerias</a></li>
+                <li><a href="#">Novedades</a></li>
+                <li><a href="#">Salas VIP</a></li>
+                <li><a href="#">Reservas</a></li>
+            </ul>
+        </nav>
+        <form class="busqueda" action="#" method="get">
+            <input type="text" name="q" placeholder="Buscar película..." />
+            <button type="submit">🔍</button>
+        </form>
+    </header>
+    <br>
+    <div class="container">
+        <form action="enviado.html" method="get" class="formulario-contacto">
+            <h2>Contáctanos</h2>
+            
+            <div class="grupo">
+                <label for="nombre"><i class="fas fa-user"></i> Nombre Completo</label>
+                <input type="text" id="nombre" placeholder="Escribe tu nombre..." required>
+            </div>
+            
+            <div class="grupo">
+                <label for="email"><i class="fas fa-envelope"></i> Correo Electrónico</label>
+                <input type="email" id="email" placeholder="tu@correo.com" required>
+            </div>
+            
+            <div class="grupo">
+                <label for="telefono"><i class="fas fa-phone"></i> Teléfono</label>
+                <input type="tel" id="telefono" placeholder="+54 11 1234-5678" required>
+            </div>
+            
+            <div class="grupo">
+                <label for="mensaje"><i class="fas fa-comment"></i> Mensaje</label>
+                <textarea id="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn-enviar">
+                <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                <link rel="stylesheet" href="enviado.html">
+            </button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; CineStar. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
