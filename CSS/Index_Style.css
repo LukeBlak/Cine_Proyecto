@@ -13,10 +13,11 @@ header {
     padding: 10px 32px;
 }
 
-.entrada {
-    background-color: #6A040F;
+#entrada {
+    background-color: #9D0208;
     text-align: center;
-
+    padding: 32px 0;
+    color: #fff;
 }
 
 header h1 {
