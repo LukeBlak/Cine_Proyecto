@@ -13,6 +13,12 @@ header {
     padding: 10px 32px;
 }
 
+.entrada {
+    background-color: #6A040F;
+    text-align: center;
+
+}
+
 header h1 {
     vertical-align: middle;
 }
