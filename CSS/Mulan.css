@@ -16,7 +16,7 @@ body{
     position: relative;
     width: 100%;
     height: 100vh;
-    background: url('../IMG/FondoMulan.png');
+    background: url('../img/FondoMulan.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -241,4 +241,142 @@ h1{
 
 .dia li em.casi-lleno{
     color: #FFBA08;
+}
+
+@media (max-width: 1024px) {
+  .contenido {
+    max-width: 90%;
+    padding: 40px;
+  }
+
+  .general{
+    background-position: right;
+  }
+
+  .titulo {
+    font-size: 32px;
+  }
+
+  .sinopsis {
+    font-size: 15px;
+    max-height: 200px;   
+    overflow-y: scroll;    
+    padding-right: 10px;
+    text-align: justify;
+  }
+
+  .Elenco article {
+    width: 48%; 
+  }
+
+  .horario-principal {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .datos-general {
+    text-align: left;
+    margin-right: 0;
+    margin-left: 20px; 
+  }
+}
+
+@media (max-width: 768px) {
+  .general {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .contenido {
+    padding: 30px;
+    max-width: 95%;
+    align-items: center;
+  }
+
+  .general{
+    background-position: right;
+  }
+
+  .titulo {
+    font-size: 26px;
+  }
+
+  .sinopsis {
+    font-size: 14px;
+    text-align: justify;
+    max-height: 150px;     
+    overflow-y: scroll;   
+  }
+
+  .datos {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .botones {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .Elenco article {
+    width: 100%; 
+  }
+
+  .tablaHorarios {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .dia {
+    margin: 0 auto 15px auto;
+    width: 90%;
+  }
+
+  .datos-general {
+    text-align: left;
+    margin-left: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo {
+    font-size: 22px;
+  }
+
+  .general{
+    background-position: right;
+  }
+
+  .sinopsis {
+    font-size: 13px;
+    line-height: 1.4;
+    max-height: 120px;  
+    overflow-y: scroll; 
+    text-align: justify;   
+  }
+
+  .datos div {
+    font-size: 12px;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .dia li {
+    font-size: 13px;
+  }
+
+  .datos-general {
+    margin-left: 30px;
+    font-size: 13px;
+  }
 }
