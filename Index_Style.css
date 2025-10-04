@@ -118,12 +118,12 @@ header h1 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 3vw;
-  max-width: 90vw;   
-  margin: 0 auto;    
+  max-width: 90vw;
+  margin: 0 auto;
   padding: 4vh 0;
 }
 
-.cartelera a{
+.cartelera a {
   text-decoration: none;
 }
 
@@ -132,10 +132,10 @@ header h1 {
   border-radius: 8px;
   text-align: center;
   padding: 2vh 2vw;
-  width: 30%;          
-  max-width: 20vw; 
-  min-width: 250px; 
-  transition: transform 0.2s ;
+  width: 30%;
+  max-width: 20vw;
+  min-width: 250px;
+  transition: transform 0.2s;
   text-decoration: none;
   color: #fff;
 }
@@ -176,7 +176,7 @@ header h1 {
   transition: background-color 0.2s ease;
   cursor: default;
   text-align: center;
-  min-width: 80px;  
+  min-width: 80px;
   display: inline-block;
 }
 
@@ -215,6 +215,83 @@ header h1 {
 
 .listadeseo>p {
   text-decoration: none;
+}
+
+.dulceria {
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+}
+
+.bloque-categoria {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.categoria {
+  width: 14vw;
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(124, 1, 15, 0.9), rgba(171, 10, 15, 0.85)), url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.QRAZnnn34lilj_iqjCmVtgHaGL%3Fcb%3D12%26pid%3DApi&f=1&ipt=de898c0b7ad699675be59396bed6f7956bcde016c1f992006f9863562b492805&ipo=images");
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s;
+}
+
+.categoria:hover {
+  box-shadow: 0 0 20px rgba(238, 26, 26, 0.4);
+}
+
+.lista_producto {
+  width: 100%;
+  max-width: 14vw;
+  background: var(--red2);
+  color: #000;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-top: 12px;
+  max-height: 0;
+  transition: max-height 0.4s;
+}
+
+.lista_producto:target {
+  max-height: 300px;
+}
+
+.producto {
+  padding: 12px;
+  margin: 8px 0;
+  background: #ffef3d;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.boton_volver {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: #6c757d;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 0 0 12px 12px;
+}
+
+.boton_volver:hover {
+  background: #5a6268;
 }
 
 .footer {
