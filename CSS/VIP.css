@@ -5,3 +5,214 @@
     padding: 32px 0;
     color: #fff;
 }
+
+#entrada img {
+    width: 300px;
+    height: auto;
+    margin: 20px 10px;
+    border-radius: 10px;
+}
+
+#entrada #comida {
+    width: 300px;
+    height: auto;
+    margin: 20px 10px;
+    border-radius: 10px;
+}
+
+html {
+    background-color: #370617;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    background-color: #03071E;
+    color: white;
+    font-family: "Bitcount Prop Single Ink", system-ui;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 10px 32px;
+}
+
+header h1 {
+    vertical-align: middle;
+}
+
+header img {    
+    width: 80px;
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.menu {
+    margin-left: 32px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #03071E;
+    border-radius: 10px;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+li a:hover {
+    background-color: #D00000;
+}
+
+.busqueda {
+    display: flex;
+    align-items: center;
+    margin-left: 32px;
+}
+
+.busqueda input[type="text"] {
+    padding: 6px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 4px;
+}
+
+.busqueda button {
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.busqueda button:hover {
+    background-color: #6A040F;
+}
+
+.cartelera {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3vw;
+    max-width: 90vw;   
+    margin: 0 auto;    
+    padding: 4vh 0;
+}
+
+.cartelera a{
+    text-decoration: none;
+}
+
+.tarjeta {
+    background: linear-gradient(180deg, rgba(124, 1, 15, 0.9), rgba(171, 10, 15, 0.85));
+    border-radius: 8px;
+    text-align: center;
+    padding: 2vh 2vw;
+    width: 29%;          
+    max-width: 32%; 
+    min-width: 250px; 
+    transition: transform 0.2s ;
+    text-decoration: none;
+    color: #fff;
+}
+
+.tarjeta:hover {
+    box-shadow: 0 0 20px rgba(238, 26, 26, 0.4);
+}
+
+.tarjeta img {
+    width: 100%;
+    min-height: 40vh;
+    height: auto;
+    border-radius: 6px;
+    max-height: 40vh;
+    display: block;
+}
+
+.tarjeta h3 {
+    font-size: 2vh;
+    margin: 1vh 0;
+    color: #fff;
+}
+
+.horarios {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8vw;
+    margin: 1vh 0;
+}
+
+.horarios span {
+    background: #03071E;
+    padding: 0.5vh 1vw;
+    border-radius: 4px;
+    font-size: 1.8vh;
+    color: #fff;
+    transition: background-color 0.2s;
+    cursor: default;
+    text-align: center;
+    min-width: 80px;
+    display: block;
+}
+
+.horarios span:hover {
+    background-color: #370617;
+}
+
+.boton {
+    display: block;
+    width: 100%;
+    padding: 1.5vh 0;
+    margin: 1.5vh 0;
+    background-color: #03071E;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 2vh;
+    transition: background-color 0.2s ease;
+}
+
+.boton:hover {
+    background-color: #370617;
+    opacity: 0.8;
+}
+
+.listadeseo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+    font-size: 2.1vh;
+    color: #fff;
+}
+
+.listadeseo span {
+    color: red;
+    font-size: 2vh;
+}
+
+.listadeseo>p {
+    text-decoration: none;
+}
+
+footer {
+    text-align: left;
+    background-color: #03071E;
+    color: white;
+    border-radius: 10px;
+}
