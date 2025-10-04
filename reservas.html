@@ -1,14 +1,21 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CineStar - Reservas</title>
-  <link rel="stylesheet" href="Index_Style.css">
+  <link rel="stylesheet" href="CSS/Index_Style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Playball&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
   <header>
-    <img src="Star.png" alt="Logo de CineStar">
+    <img src="IMG/Star.png" alt="Logo de CineStar">
     <h1>CineStar</h1>
     <nav class="menu">
       <ul>
@@ -21,17 +28,21 @@
         <li><a href="Acerca_de_nosotros.html">Sobre Nosotros</a></li>
       </ul>
     </nav>
-  </header>
+    <form class="busqueda" action="#" method="get">
+      <input type="text" name="q" placeholder="Buscar película..." />
+      <button type="submit">🔍</button>
+    </form>
 
+  </header>
   <section class="reservas">
     <h2>Reservas de Salas</h2>
     <p>
-      Agenda una sala privada para tu evento, función exclusiva o presentación especial. 
+      Agenda una sala privada para tu evento, función exclusiva o presentación especial.
       Completa el formulario y un asesor se pondrá en contacto contigo.
     </p>
 
     <form class="reserva-form" action="" method="post">
-      <label>  <!--"action" no hace nada, pero es para enviar los datos del formulario-->
+      <label> <!--"action" no hace nada, pero es para enviar los datos del formulario-->
         Cine
         <select name="cine" required> <!-- required manda el mensaje de error -->
           <option value="">Selecciona sede</option>
@@ -59,7 +70,7 @@
       <label>
         Fecha
         <input type="date" name="fecha" required value="2025-01-01"> <!--mensaje error-->
-      </label>                          <!-- valor inicial en la fecha -->
+      </label> <!-- valor inicial en la fecha -->
 
       <label>
         Horario de inicio
@@ -113,7 +124,7 @@
 
   <footer class="footer">
     <div class="footer-container">
-      
+
       <div class="footer-column">
         <h3>Cartelera</h3>
         <ul>
@@ -145,9 +156,9 @@
       <div class="footer-column">
         <h3>¿Quiénes somos?</h3>
         <p>
-          Somos una empresa dedicada a brindar experiencias de cine inolvidables, 
-          con calidad, comodidad e innovación. Somos el cine que busca ser líder 
-          en la región, reconocido por su servicio y tecnología. Somos pasión por 
+          Somos una empresa dedicada a brindar experiencias de cine inolvidables,
+          con calidad, comodidad e innovación. Somos el cine que busca ser líder
+          en la región, reconocido por su servicio y tecnología. Somos pasión por
           el cine, compromiso con el cliente, innovación, inclusión e integridad.
         </p>
       </div>
@@ -159,4 +170,5 @@
     </div>
   </footer>
 </body>
+
 </html>
