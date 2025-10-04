@@ -297,6 +297,94 @@ header h1 {
   background: #5a6268;
 }
 
+.acerca-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+.acerca-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.acerca-header h2 {
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+.acerca-descripcion {
+  background-color: #03071E;
+  border-radius: 10px;
+  padding: 30px;
+  margin-bottom: 40px;
+  border: 2px solid #6A040F;
+  text-align: center;
+}
+.acerca-descripcion p {
+  color: white;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.equipo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-bottom: 50px;
+}
+.miembro {
+  background-color: #03071E;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  border: 2px solid #6A040F;
+  transition: all 0.3s ease;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.miembro:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(208, 0, 0, 0.2);
+}
+.miembro h3 {
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+.miembro .rol {
+  color: #D00000;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+.miembro .bio {
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.agradecimiento {
+  text-align: center;
+  margin-top: 50px;
+  padding: 30px;
+  background-color: #03071E;
+  border-radius: 10px;
+  border: 2px solid #6A040F;
+}
+.agradecimiento p {
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
 .footer {
   background: linear-gradient(0deg, var(--ink), #0c1124);
   padding: 40px 20px 20px;
@@ -402,8 +490,6 @@ header h1 {
   }
 }
 
-
-/*Seccion de Reservas*/
 .reservas {
   max-width: 800px;
   margin: 40px auto;
@@ -413,68 +499,67 @@ header h1 {
   box-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
 
-.reservas h2 { /*Espacio entre titulo y texto*/
+.reservas h2 { 
   text-align: center;
   margin-bottom: 16px;
   color: var(--amber);
 }
 
-.reservas p { /*Texto*/
+.reservas p { 
   text-align: center;
   font-size: 0.95rem;
   margin-bottom: 20px;
   color: #ffffff;
 }
 
-.reserva-form { /*forma de columnas para los campos a llenar*/
+.reserva-form { 
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.reserva-form label { /*sub-titulos*/
+.reserva-form label { 
   display: flex;
   flex-direction: column;
   font-size: 0.9rem;
   color: #ffffff;
 }
 
-.reserva-form input,.reserva-form select,.reserva-form textarea { /*cuadros*/
+.reserva-form input,.reserva-form select,.reserva-form textarea { 
   padding: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.25); /*marcos*/
+  border: 1px solid rgba(0, 0, 0, 0.25); 
   border-radius: 6px;
   margin-top: 5px;
-  background: rgba(255, 255, 255, 0.1); /*Color de cuadros*/
-  color: #ffffff; /*texto dentro de los cuadros*/
+  background: rgba(255, 255, 255, 0.1); 
+  color: #ffffff; 
   font-size: 1rem; 
 }
 
-.reserva-form input::placeholder,.reserva-form textarea::placeholder { /*ultimo cuadro*/
-  color: rgba(255, 255, 255, 0.8); /*placeholder lo uso como texto temporal*/
+.reserva-form input::placeholder,.reserva-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.8);
 }
 
-.reserva-form select option { /*texto de las opciones al desplegar*/
-  color: #111; /*texto*/
-  background: #ffffff; /*fondo*/
+.reserva-form select option { 
+  color: #111; 
+  background: #ffffff; 
 }
 
-.reserva-form input:focus,.reserva-form select:focus,.reserva-form textarea:focus { /*control de los cuadros al escribir*/
-  outline: 2px solid var(--amber); /* focus se encarga de mantener el cuadro enfocado al escribir o interacuar*/
-  background: rgba(255,255,255,0.18); /*color del cuadro (blanco)*/
-}
+.reserva-form input:focus,.reserva-form select:focus,.reserva-form textarea:focus { 
+  outline: 2px solid var(--amber); 
+  background: rgba(255,255,255,0.18); 
 
-.reserva-form button { /*boton de reserva*/
+.reserva-form button { 
   margin-top: 12px;
   background: linear-gradient(180deg, var(--red), var(--red2));
-  color: #ffffff;/*color texto*/
+  color: #ffffff;
   padding: 12px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-size: 1rem;
-  transition: transform 0.15s ease, filter 0.2s ease; /*reaccion del boton*/
+  transition: transform 0.15s ease, filter 0.2s ease; 
 }
 
-.reserva-form button:hover { /*animacion del boton*/
-  transform: translateY(-2.5px); /*elevacion dle boton*/
+.reserva-form button:hover { 
+  transform: translateY(-2.5px);
 }
