@@ -1,5 +1,5 @@
 #entrada {
-    background-color: #9D0208;
+    background-color: #6A040F;
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -16,6 +16,11 @@
     border-radius: 10px;
 }
 
+#entrada ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
 #formulario-reserva {
     display: flex;
     flex-direction: column;
@@ -29,7 +34,7 @@
 }
 
 #reservas {
-    background-color: #9D0208;
+    background-color: #6A040F;
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
