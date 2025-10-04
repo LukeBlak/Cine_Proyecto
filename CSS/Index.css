@@ -1,0 +1,116 @@
+:root {
+  --bg: #370617;
+  --ink: #03071E;
+  --red: #D00000;
+  --red2: #9D0208;
+  --amber: #FFBA08;
+  --amber2: #FAA307;
+  --txt: #fff;
+}
+
+section { width: 100%; }
+
+#personajes {
+	margin-top: 5vh;
+}
+
+
+#peliculasNuevas {
+	width: 100%;
+	height: 50vh;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+	gap: 7vh;
+	margin-top: 5vh;
+}
+
+.peliculas {
+	width: 35vh;
+	height: 48vh;
+	background-size: cover;
+	background-position-x: center;
+	background-position-y: bottom;
+}
+
+.peliculas::after {
+	content: "";
+	width: 25vh;
+	height: 45vh;
+	border: solid 3px var(--red);
+	transform: skew(-10deg);
+	position: absolute;
+	z-index: -1;
+	margin-left: 120px;
+	margin-top: -10px;
+	-webkit-box-shadow: inset -13px -2px 28px 16px rgba(157,2,8,0.78); 
+box-shadow: inset -13px -2px 28px 16px rgba(157,2,8,0.78);
+}
+
+.peliculas:nth-child(1) {
+	background-image: url("../IMG/zooPersonajes.png");
+}
+.peliculas:nth-child(2) {
+	background-image: url("../IMG/tronPersonaje.png");
+	background-position: top;
+}
+.peliculas:nth-child(3) {
+	background-image: url("../IMG/policia.png");
+	background-position: center;
+}
+
+
+section h2{
+	text-align: center;
+	font-size: 3vh;
+	color: var(--amber);
+}
+
+.divisor {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.divisor img {
+	width: 7vh;
+	height: 7vh;
+}
+
+.divisor hr {
+	height: 3px;
+	width: 100%;
+	border: none;
+	background-color: var(--amber2);
+}
+
+#sectionTarjetas {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.tarjeta {
+  background: var(--ink);
+  color: var(--txt);
+  width: fit-content;
+  height: fit-content;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.3);
+  text-align: center;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.tarjeta img {
+  margin-bottom: 12px;
+}
+
+.tarjeta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,.5);
+}
+
