@@ -88,8 +88,11 @@ header {
   background: linear-gradient(90deg, var(--ink), #0c1124 70%);
   border-radius: 12px;
   padding: 12px 24px;
-  font-family: "Bitcount Prop Single Ink", system-ui;
   box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+}
+
+header h1 {
+    font-family: "Bitcount Prop Single Ink", system-ui;
 }
 
 header img {
