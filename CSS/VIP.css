@@ -16,6 +16,29 @@
     border-radius: 10px;
 }
 
+#formulario-reserva {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 400px;
+    margin: 0 auto;
+    background: rgba(48, 7, 23, 0.85);
+    padding: 24px 18px;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+}
+
+#reservas {
+    background-color: #9D0208;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    font-family: "Bitcount Prop Single Ink", system-ui;
+    font-weight: bold;
+}
+
 :root {
   --bg: #370617;
   --ink: #03071E;
