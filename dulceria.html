@@ -11,6 +11,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Playball&display=swap"
     rel="stylesheet">
+    <script src="JS/dulceria.js" defer></script>
 </head>
 
 <body>
@@ -34,67 +35,26 @@
     </form>
   </header>
   <br>
-  <section class="dulceria">
-    <div class="bloque-categoria">
-      <a href="#favoritos-productos" class="categoria">FAVORITOS</a>
-      <div id="favoritos-productos" class="lista_producto">
-        <div class="producto">Hot Dog Clásico - $3.50</div>
-        <div class="producto">Coca Cola Mediana - $2.00</div>
-        <div class="producto">Palomitas Pequeñas - $2.50</div>
-        <a href="#" class="boton_volver">← Volver</a>
-      </div>
-    </div>
 
-    <div class="bloque-categoria">
-      <a href="#combos-productos" class="categoria">COMBOS</a>
-      <div id="combos-productos" class="lista_producto">
-        <div class="producto">Combo Hot Dog - $5.50</div>
-        <div class="producto">Combo Palomitas - $5.00</div>
-        <div class="producto">Combo Todo en Uno - $7.00</div>
-        <a href="#" class="boton_volver">← Volver</a>
-      </div>
-    </div>
+  <main class="dulceria">
+    <aside class="listaCategorias">
+      <div class="categoria" data-category="favoritos">FAVORITOS</div>
+      <div class="categoria" data-category="combos">COMBOS</div>
+      <div class="categoria" data-category="palomitas">PALOMITAS</div>
+      <div class="categoria" data-category="bebidas">BEBIDAS</div>
+      <div class="categoria" data-category="snacks">SNACKS</div>
+      <div class="categoria" data-category="chocolates">CHOCOLATES</div>
+    </aside>
 
-    <div class="bloque-categoria">
-      <a href="#palomitas-productos" class="categoria">PALOMITAS</a>
-      <div id="palomitas-productos" class="lista_producto">
-        <div class="producto">Palomitas Saladas - $2.50</div>
-        <div class="producto">Palomitas Dulces - $2.75</div>
-        <div class="producto">Palomitas Queso - $3.00</div>
-        <a href="#" class="boton_volver">← Volver</a>
+    <section class="panel-productos" id="panel-productos">
+      <div class="contenedor-productos" id="contenedor-productos">
       </div>
-    </div>
+      <div class="mensaje" id="mensaje">
+        🔍 Selecciona una categoría del menú lateral para ver sus productos.
+      </div>
+    </section>
+  </main>
 
-    <div class="bloque-categoria">
-      <a href="#bebidas-productos" class="categoria">BEBIDAS</a>
-      <div id="bebidas-productos" class="lista_producto">
-        <div class="producto">Fuze Tea Limón - $2.25</div>
-        <div class="producto">Agua Dasani - $1.50</div>
-        <div class="producto">Soda Zero - $2.00</div>
-        <a href="#" class="boton_volver">← Volver</a>
-      </div>
-    </div>
-
-    <div class="bloque-categoria">
-      <a href="#snacks-productos" class="categoria">SNACKS</a>
-      <div id="snacks-productos" class="lista_producto">
-        <div class="producto">Hot Dog Gourmet - $4.00</div>
-        <div class="producto">Nachos con Queso - $3.50</div>
-        <div class="producto">Papas Fritas - $2.75</div>
-        <a href="#" class="boton_volver">← Volver</a>
-      </div>
-    </div>
-
-    <div class="bloque-categoria">
-      <a href="#dulces-productos" class="categoria">DULCES</a>
-      <div id="dulces-productos" class="lista_producto">
-        <div class="producto">Chocolate Negro - $1.75</div>
-        <div class="producto">Chocolate Blanco - $1.75</div>
-        <div class="producto">Chocolate con Leche - $1.75</div>
-        <a href="#" class="boton_volver">← Volver</a>
-      </div>
-    </div>
-  </section>
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-column">

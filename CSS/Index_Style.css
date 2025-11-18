@@ -221,80 +221,132 @@ header>h1 {
 }
 
 .dulceria {
-  padding: 30px 20px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 24px;
+  flex: 1;
+  padding: 20px;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-.bloque-categoria {
+.listaCategorias {
+  width: 250px;
+  background: var(--ink);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 800px;
+  gap: 10px;
 }
 
 .categoria {
-  width: 14vw;
-  height: 20vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, rgba(124, 1, 15, 0.9), rgba(171, 10, 15, 0.85)), url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.QRAZnnn34lilj_iqjCmVtgHaGL%3Fcb%3D12%26pid%3DApi&f=1&ipt=de898c0b7ad699675be59396bed6f7956bcde016c1f992006f9863562b492805&ipo=images");
+  padding: 15px 20px;
+  background: linear-gradient(180deg, rgba(124, 1, 15, 0.9), rgba(171, 10, 15, 0.85));
   color: white;
   font-weight: bold;
   text-decoration: none;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .categoria:hover {
-  box-shadow: 0 0 20px rgba(238, 26, 26, 0.4);
+  box-shadow: 0 0 15px rgba(238, 26, 26, 0.4);
+  transform: translateY(-2px);
 }
 
-.lista_producto {
-  width: 100%;
-  max-width: 14vw;
-  background: var(--red2);
-  color: #000;
+.categoria.active {
+  background: linear-gradient(180deg, var(--red), var(--red2));
+  box-shadow: 0 0 20px rgba(238, 26, 26, 0.5);
+}
+
+.panel-productos {
+  flex: 1;
+  background: var(--ink);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  margin-top: 12px;
-  max-height: 0;
-  transition: max-height 0.4s;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
 }
 
-.lista_producto:target {
-  max-height: 300px;
+.mensaje {
+  font-size: 1.2rem;
+  color: #ccc;
+  text-align: center;
+  padding: 20px;
+  opacity: 0.8;
+}
+
+.contenedor-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contenedor-productos.visible {
+  opacity: 1;
 }
 
 .producto {
-  padding: 12px;
-  margin: 8px 0;
-  background: #F48C06;
+  background: linear-gradient(135deg, var(--amber), var(--amber2));
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  color: #121212;
+  font-weight: bold;
+}
+
+.producto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.productoImagen {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
   border-radius: 8px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.boton_volver {
+  margin-bottom: 10px;
+  background: #fff;
+  padding: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   display: block;
-  width: 100%;
-  padding: 10px;
-  background: #6c757d;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 0 0 12px 12px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.boton_volver:hover {
-  background: #5a6268;
+.producto span {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.producto::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: -1;
 }
 
 .formulario-contacto {
@@ -701,3 +753,4 @@ header>h1 {
   .reserva-form button:hover {
     transform: translateY(-2.5px);
   }
+}
