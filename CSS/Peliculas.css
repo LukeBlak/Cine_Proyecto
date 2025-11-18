@@ -1,4 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=Orbitron:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=Orbitron:wght@400..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -12,11 +21,140 @@ body{
     color: #fff;
 }
 
+.btn-regresar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-regresar:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+.btn-regresar .material-symbols-outlined {
+    font-size: 32px;
+    color: white;
+}
+
 .general{
     position: relative;
     width: 100%;
     height: 100vh;
+    background: url('../IMG/FondoDWP.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.generalZ{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('../IMG/FondoZootopia.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.generalT{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('../IMG/FondoTron.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.generalP{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('../IMG/FondoDondePolicia.webp');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.generalBu{
+    position: relative;
+    width: 100%;
+    height: 100vh;
     background: url('../IMG/BTSfondo.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.generalTr{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('../IMG/transformersFondo.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.generalM{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('../IMG/FondoMulan.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.generalO{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('../IMG/FondoElOrigen.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.generalBg{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('../IMG/FondoBadGuys.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -44,6 +182,41 @@ body{
 }
 
 .titulo{
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #D00000;
+    font-family: "Playfair Display", serif;
+    text-align: center;
+}
+
+.tituloz{
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-family: "Alan Sans", sans-serif;
+    color: #33c599;
+    text-align: center;
+}
+
+.tituloT{
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-family: "Audiowide", sans-serif;
+    color: white;
+    text-align: center;
+}
+
+.tituloP{
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-family: "Alan Sans", sans-serif;
+    color: #f03c7b;
+    text-align: center;
+}
+
+.tituloBu{
     font-size: 50px;
     margin-bottom: 20px;
     font-family: "Bebas Neue", sans-serif;
@@ -51,14 +224,51 @@ body{
     text-align: center;
 }
 
-.titulo span{
+.tituloBu span{
     font-family: "Bebas Neue", sans-serif;
     color: rgb(255, 144, 255);
 }
 
-.titulo span.division{
+.tituloBu span.division{
     font-family: "Bebas Neue", sans-serif;
     color: rgb(148, 30, 148);
+}
+
+.tituloTr{
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-family: "Orbitron", sans-serif;
+    color: #acadb1;
+    font-weight: 700;
+    text-align: center;
+}
+
+.tituloM{
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-family: "Rock Salt", cursive;
+    color: #faf16b;
+    text-align: center;
+}
+
+.tituloO{
+    font-size: 50px;
+    margin-bottom: 20px;
+    font-family: "Bebas Neue", sans-serif;
+    color: #D00000;
+    text-align: center;
+}
+
+.tituloBg{
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-family: "Titan One", sans-serif;
+    color: #f6981f;
+    text-align: center;
+}
+
+.tituloBg span{
+    font-family: "Pacifico", cursive;
 }
 
 .sinopsis {
@@ -255,6 +465,25 @@ h1{
 
 .dia li em.lleno{
     color: black;
+}
+
+.fecha{
+    flex: 1;
+    background-color: #D00000;
+    border-radius: 8px;
+    padding: 15px 20px;
+    min-width: 250px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.fecha li {
+  margin-bottom: 10px;
+  font-size: 25px;
+  text-align: center;
+  font-weight: 700;
+  list-style: none;
 }
 
 @media (max-width: 1024px) {
