@@ -771,19 +771,22 @@ header>h1 {
   outline: 2px solid var(--amber);
   background: rgba(255, 255, 255, 0.18);
 
-  .reserva-form button {
-    margin-top: 12px;
-    background: linear-gradient(180deg, var(--red), var(--red2));
-    color: #ffffff;
-    padding: 12px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: transform 0.15s ease, filter 0.2s ease;
-  }
+}
 
-  .reserva-form button:hover {
-    transform: translateY(-2.5px);
-  }
+.reserva-form .btn {
+  margin-top: 12px;
+  background: linear-gradient(180deg, var(--red), var(--red2));
+  color: #ffffff;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: transform 0.15s ease, filter 0.2s ease;
+}
+
+.reserva-form .btn:hover {
+  transform: translateY(-2.5px);
+  filter: brightness(1.1);
 }

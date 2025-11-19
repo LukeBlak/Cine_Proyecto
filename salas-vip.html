@@ -1,120 +1,127 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineStar</title>
-    <link rel="stylesheet" href="./CSS/VIP.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Playball&display=swap" 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineStar</title>
+  <link rel="stylesheet" href="./CSS/VIP.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Playball&display=swap"
     rel="stylesheet">
 </head>
+
 <body>
-    <header>
-        <img src="IMG/Star.png" alt="Logo de CineStar">
-        <h1>CineStar</h1>
-        <nav class="menu">
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="cartelera.html">Cartelera</a></li>
-                <li><a href="dulceria.html">Dulcerías</a></li>
-                <li><a href="novedades.html">Novedades</a></li>
-                <li><a href="salas-vip.html">Salas VIP</a></li>
-                <li><a href="reservas.html">Reservas</a></li>
-                <li><a href="Acerca_de_nosotros.html">Sobre Nosotros</a></li>
-            </ul>
-        </nav>
-        <form class="busqueda" action="#" method="get">
-            <input type="text" name="q" placeholder="Buscar película..." />
-            <button type="submit">🔍</button>
-        </form>
-    </header>
+  <header>
+    <img src="IMG/Star.png" alt="Logo de CineStar">
+    <h1>CineStar</h1>
+    <nav class="menu">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="cartelera.html">Cartelera</a></li>
+        <li><a href="dulceria.html">Dulcerías</a></li>
+        <li><a href="novedades.html">Novedades</a></li>
+        <li><a href="salas-vip.html">Salas VIP</a></li>
+        <li><a href="reservas.html">Reservas</a></li>
+        <li><a href="Acerca_de_nosotros.html">Sobre Nosotros</a></li>
+      </ul>
+    </nav>
+    <form class="busqueda" action="#" method="get">
+      <input type="text" name="q" placeholder="Buscar película..." />
+      <button type="submit">🔍</button>
+    </form>
+  </header>
+  <br>
+  <section>
+    <article id="entrada">
+      <h2>Salas VIP</h2>
+      <p>Disfruta de una experiencia unica en nuestras salas VIP, con asientos reclinables,
+        servicio de camareros y un extenso menú de alimentos y bebidas premium.
+      </p>
+      <img src="IMG/Comida.jpg" alt="Comida VIP" id="comida">
+      <p>Nuestras salas VIP están diseñadas para ofrecerte la máxima comodidad y lujo,
+        con un ambiente exclusivo y atención personalizada. Relájate en nuestros asientos
+        de cuero, disfruta de una copa de vino o un cóctel, y deléitate con nuestras
+        opciones gastronómicas gourmet mientras ves tu película favorita.</p>
+      <hr>
+      <h2>Beneficios de las salas VIP</h2>
+      <ul>
+        <li>Asientos reclinables y cómodos</li>
+        <li>Menu exclusivo para clientes VIP</li>
+        <li>Servicio de camareros en la sala</li>
+        <li>Acceso a horarios preferenciales</li>
+        <li>Salas privadas para grupos</li>
+      </ul>
+    </article>
     <br>
-    <section>
-        <article id="entrada">
-            <h2>Salas VIP</h2>
-            <p>Disfruta de una experiencia unica en nuestras salas VIP, con asientos reclinables, 
-                servicio de camareros y un extenso menú de alimentos y bebidas premium.
-            </p>
-            <img src="IMG/Comida.jpg" alt="Comida VIP" id="comida">
-            <p>Nuestras salas VIP están diseñadas para ofrecerte la máxima comodidad y lujo, 
-                con un ambiente exclusivo y atención personalizada. Relájate en nuestros asientos 
-                de cuero, disfruta de una copa de vino o un cóctel, y deléitate con nuestras 
-                opciones gastronómicas gourmet mientras ves tu película favorita.</p>
-            <hr>    
-            <h2>Beneficios de las salas VIP</h2>
-            <ul>
-                <li>Asientos reclinables y cómodos</li>
-                <li>Menu exclusivo para clientes VIP</li>
-                <li>Servicio de camareros en la sala</li>
-                <li>Acceso a horarios preferenciales</li>
-                <li>Salas privadas para grupos</li>
-            </ul>
-        </article>
-        <br>
-        <article id="reservas">
-            <h2>Reservar sala</h2>
-            <p>Por favor rellene el siguiente formulario para reservar su sala VIP:</p>
-            <form action="#" method="post" id="formulario-reserva">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
-                <label for="fecha">Fecha:</label>
-                <input type="date" id="fecha" name="fecha" required>
-                <label for="hora">Hora:</label>
-                <input type="time" id="hora" name="hora" required>
-                <button type="submit">Reservar</button>
-            </form>
-        </article>
-    </section>
-    <br>
-    <footer class="footer">
-      <div class="footer-container">
-        
-        <div class="footer-column">
-          <h3>Cartelera</h3>
-          <ul>
-            <li><a href="#">Preventas</a></li>
-            <li><a href="#">Muestras y festivales</a></li>
-            <li><a href="#">Google Play</a></li>
-            <li><a href="#">Apple Store</a></li>
-          </ul>
-        </div>
+    <article id="reservas">
+      <h2>Reservar sala</h2>
+      <p>Por favor rellene el siguiente formulario para reservar su sala VIP:</p>
+      <form action="#" method="post" id="formulario-reserva">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required>
+        <label for="hora">Hora:</label>
+        <input type="time" id="hora" name="hora" required>
+        <button type="submit">Reservar</button>
+      </form>
+    </article>
+  </section>
+  <br>
+  <footer class="footer">
+    <div class="footer-container">
 
-        <div class="footer-column">
-          <h3>Legales</h3>
-          <ul>
-            <li><a href="#">Aviso de privacidad</a></li>
-            <li><a href="#">Términos y condiciones</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-column">
-          <h3>Políticas</h3>
-          <ul>
-            <li><a href="#">Código de integridad</a></li>
-            <li><a href="#">Política Anticorrupción</a></li>
-            <li><a href="#">Protección de Datos</a></li>
-            <li><a href="#">Diversidad e Inclusión</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-column">
-          <h3>¿Quiénes somos?</h3>
-          <p>
-            Somos una empresa dedicada a brindar experiencias de cine inolvidables, 
-            con calidad, comodidad e innovación. Somos el cine que busca ser líder 
-            en la región, reconocido por su servicio y tecnología. Somos pasión por 
-            el cine, compromiso con el cliente, innovación, inclusión e integridad.
-          </p>
-        </div>
-
+      <div class="footer-column">
+        <h3>Cartelera</h3>
+        <ul>
+          <li><a href="#">Preventas</a></li>
+          <li><a href="#">Muestras y festivales</a></li>
+          <li><a href="#">Google Play</a></li>
+          <li><a href="#">Apple Store</a></li>
+        </ul>
       </div>
 
-      <div class="footer-bottom">
-        <p>© 2025 CineStar. Todos los derechos reservados.</p>
+      <div class="footer-column">
+        <h3>Legales</h3>
+        <ul>
+          <li><a href="#">Aviso de privacidad</a></li>
+          <li><a href="#">Términos y condiciones</a></li>
+        </ul>
+        <h3>Contáctanos</h3>
+        <ul>
+          <li> <a href="formulario.html">Contacta con Nosotros</a></li>
+        </ul>
       </div>
-    </footer>
+
+      <div class="footer-column">
+        <h3>Políticas</h3>
+        <ul>
+          <li><a href="#">Código de integridad</a></li>
+          <li><a href="#">Política Anticorrupción</a></li>
+          <li><a href="#">Protección de Datos</a></li>
+          <li><a href="#">Diversidad e Inclusión</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>¿Quiénes somos?</h3>
+        <p>
+          Somos una empresa dedicada a brindar experiencias de cine inolvidables,
+          con calidad, comodidad e innovación. Somos el cine que busca ser líder
+          en la región, reconocido por su servicio y tecnología. Somos pasión por
+          el cine, compromiso con el cliente, innovación, inclusión e integridad.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 CineStar. Todos los derechos reservados.</p>
+    </div>
+  </footer>
 
 </body>
 
