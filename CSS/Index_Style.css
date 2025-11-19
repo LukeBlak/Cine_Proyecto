@@ -157,30 +157,63 @@ header>h1 {
 }
 
 .tarjeta h3 {
-  font-size: 2vh;
+  font-size: 2.5vh;
   margin: 1vh 0;
   color: #fff;
 }
 
 .horarios {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.8vw;
+  width: 100%;
   margin: 1vh 0;
+  background: #03071E;
+  border-radius: 6px;
+  padding: 0;
+  gap: 10px;
 }
 
-.horarios span {
-  background: #03071E;
+.horarios summary {
   padding: 0.5vh 1vw;
-  border-radius: 4px;
-  font-size: 1.8vh;
-  color: #fff;
-  transition: background-color 0.2s ease;
-  cursor: default;
+  background: var(--ink);
+  color: white;
+  cursor: pointer;
+  list-style: none;
+  border-radius: 6px;
+  font-size: 2vh;
   text-align: center;
-  min-width: 80px;
-  display: inline-block;
+  transition: background-color 0.2s;
+}
+
+.horarios summary:hover {
+  background: #5a6268;
+}
+
+.horarios>summary::-webkit-details-marker {
+  display: none;
+}
+
+.horarios[open] summary {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px 6px 0 0;
+}
+
+.tabla-horarios {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5vh;
+}
+
+.tabla-horarios th,
+.tabla-horarios td {
+  padding: 0.4vh 0.6vw;
+  text-align: center;
+  font-size: 1.5vh;
+  background: var(--ink);
+  border: 1px solid rgba(164, 164, 164, 0.288);
+}
+
+.tabla-horarios th {
+  background: var(--ink);
+  color: white;
 }
 
 .boton {
