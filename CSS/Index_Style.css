@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
 :root {
   --bg: #370617;
   --ink: #03071E;
@@ -7,6 +9,7 @@
   --amber2: #FAA307;
   --txt: #fff;
 }
+
 
 html {
   height: 100%;
@@ -18,11 +21,15 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--txt);
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
 }
 
 section {
   flex: 1 0 auto;
 }
+
 
 header {
   display: flex;

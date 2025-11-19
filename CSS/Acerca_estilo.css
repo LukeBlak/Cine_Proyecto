@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
 html {
     background-color: #370617;
+}
+body{
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
 }
 header {
     display: flex;
@@ -40,7 +46,6 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 li a:hover {
     background-color: #D00000;
