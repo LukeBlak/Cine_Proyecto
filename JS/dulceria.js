@@ -2,7 +2,7 @@ const productos = {
     favoritos: [
         { nombre: "Hot Dog Clásico", precio: "$3.50", imagen: "hotdog" },
         { nombre: "Coca Cola Mediana", precio: "$2.00", imagen: "cocacola" },
-        { nombre: "Palomitas Pequeñas", precio: "$2.50", imagen: "palomitas" },
+        { nombre: "Palomitas Pequeñas", precio: "$2.50", imagen: "palomitamediana" },
     ],
     combos: [
         { nombre: "Combo Hot Dog", precio: "$5.50", imagen: "hotdog" },
