@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CineStar Login or Register</title>
+    <link rel="stylesheet" href="CSS/Index_Style.css">
+    <link rel="stylesheet" href="CSS/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Playball&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img src="IMG/Star.png" alt="Logo de CineStar">
+        <h1>CineStar</h1>
+    </header>
+
+    <div class="login-container">
+        <div class="login-panel">
+            <h2>Acceso CineStar</h2>
+            
+            <div class="login-tabs">
+                <button class="tab-btn active" data-tab="login">Inicio de Sesión</button>
+                <button class="tab-btn" data-tab="register">Registro</button>
+            </div>
+            
+            <div class="tab-content active" id="login">
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Correo electrónico</label>
+                        <input type="email" id="loginEmail" required placeholder="Ingresa tu correo">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Contraseña</label>
+                        <input type="password" id="loginPassword" required placeholder="Ingresa tu contraseña">
+                    </div>
+                    <button type="submit" class="btn-login">Iniciar Sesión</button>
+                </form>
+            </div>
+            
+            <div class="tab-content" id="register">
+                <form class="login-form" id="registerForm">
+                    <div class="form-group">
+                        <label for="registerEmail">Correo electrónico</label>
+                        <input type="email" class="form-control" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Contraseña</label>
+                        <input type="password" class="form-control" id="registerPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">Nombre</label>
+                        <input type="text" class="form-control" id="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Apellido</label>
+                        <input type="lastName" class="form-control" id="lastName" required>
+                    </div>
+                    <button type="submit" class="btn-register">Registrarse</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                
+                button.classList.add('active');
+                
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    </script>
+    <script type="module" src="js/login.js"></script>
+</body>
+</html>
