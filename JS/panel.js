@@ -22,12 +22,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Mostrar información del usuario
-    document.getElementById('userName').textContent = userName;
+    const userNameElement = document.getElementById('userName');
+    if (userNameElement) {
+        userNameElement.textContent = userName;
+    }
     
     // Verificar si es admin y mostrar el rol correcto
+    const userRoleElement = document.getElementById('userRole');
     if (userRole === 'Admin' || userRole === 'admin') {
         console.log("✅ Usuario es ADMIN");
-        document.getElementById('userRole').textContent = 'Administrador General';
+        if (userRoleElement) {
+            userRoleElement.textContent = 'Administrador General';
+        }
         
         // Mostrar sección de admin
         const adminSection = document.getElementById('adminSection');
@@ -36,18 +42,20 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("✅ Sección de admin visible");
         }
         
-        // Cargar datos iniciales solo si es admin (por ejemplo, la lista de películas)
+        // Cargar datos iniciales solo si es admin
         loadMovies();
         
     } else {
-        // Si no es admin, se puede redirigir o limitar funcionalidades, pero por ahora solo muestra el rol
-        document.getElementById('userRole').textContent = 'Empleado';
+        if (userRoleElement) {
+            userRoleElement.textContent = 'Empleado';
+        }
         console.log("✅ Usuario es Empleado, acceso limitado/sólo visualización");
     }
 
     // Inicializar listeners de los formularios
     initializeForms();
     initializeTabs();
+    initializeLogout();
 });
 
 // Inicializar pestañas de navegación
@@ -64,13 +72,15 @@ function initializeTabs() {
             // Activar la pestaña y el contenido seleccionados
             button.classList.add('active');
             const targetId = button.getAttribute('data-tab');
-            document.getElementById(targetId).classList.add('active');
+            const targetContent = document.getElementById(targetId);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
 
             // Cargar datos específicos al cambiar de pestaña si es necesario
             if (targetId === 'peliculas') {
                 loadMovies();
             }
-            // Aquí se pueden agregar más llamadas para cargar promociones o productos de dulcería
         });
     });
 
@@ -86,76 +96,123 @@ function initializeForms() {
     const movieForm = document.getElementById('movieForm');
     if (movieForm) {
         movieForm.addEventListener('submit', handleSaveMovie);
+        console.log("✅ Formulario de películas inicializado");
+    } else {
+        console.warn("⚠️ Formulario 'movieForm' no encontrado");
     }
     
     // 2. Formulario de Promociones
     const promotionForm = document.getElementById('promotionForm');
     if (promotionForm) {
         promotionForm.addEventListener('submit', handleSavePromotion);
+        console.log("✅ Formulario de promociones inicializado");
+    } else {
+        console.warn("⚠️ Formulario 'promotionForm' no encontrado");
     }
     
     // 3. Formulario de Productos de Dulcería
     const productForm = document.getElementById('productForm');
     if (productForm) {
         productForm.addEventListener('submit', handleSaveProduct);
+        console.log("✅ Formulario de productos inicializado");
+    } else {
+        console.warn("⚠️ Formulario 'productForm' no encontrado");
     }
+}
+
+// === HELPERS PARA OBTENER VALORES DE FORMA SEGURA ===
+
+function getElementValue(id, defaultValue = '') {
+    const element = document.getElementById(id);
+    if (!element) {
+        console.warn(`⚠️ Elemento '${id}' no encontrado`);
+        return defaultValue;
+    }
+    return element.value || defaultValue;
+}
+
+function getElementValueAsNumber(id, defaultValue = 0) {
+    const value = getElementValue(id, String(defaultValue));
+    const parsed = parseInt(value, 10);
+    return isNaN(parsed) ? defaultValue : parsed;
 }
 
 // === HANDLERS DE FORMULARIOS ===
 
-// Manejar el guardado de películas
-async function handleSaveMovie(e) {
-    e.preventDefault();
-    
-    const title = document.getElementById('movieTitle').value;
-    const genre = document.getElementById('movieGenre').value;
-    const duration = document.getElementById('movieDuration').value;
-    const description = document.getElementById('movieSynopsis').value;
-    const startDate = document.getElementById('movieStartDate').value;
-    const endDate = document.getElementById('movieEndDate').value;
-    const director = document.getElementById('movieDirector').value;
-    const image = document.getElementById('movieImage').value;
+const movieForm = document.getElementById('movieForm');
+if (movieForm) {
+    // Agregar horarios dinámicamente
+    document.getElementById('addSchedule').addEventListener('click', () => {
+        const container = document.getElementById('scheduleInputs');
+        const div = document.createElement('div');
+        div.className = 'schedule-item';
+        div.innerHTML = `
+            <input type="text" class="schedule-day" placeholder="Ej: Domingo 5" required>
+            <input type="time" class="schedule-time" required>
+        `;
+        container.appendChild(div);
+    });
 
-    const movieData = {
-        title,
-        genre,
-        duration: parseInt(duration), // Convertir a número
-        description,
-        startDate,
-        endDate,
-        director,
-        image
-    };
+    movieForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-    const success = await saveMovie(movieData);
+        // Recolectar horarios
+        const scheduleItems = document.querySelectorAll('.schedule-item');
+        const schedules = [];
+        for (const item of scheduleItems) {
+            const day = item.querySelector('.schedule-day').value;
+            const time = item.querySelector('.schedule-time').value;
+            if (day && time) {
+                schedules.push({ day, time });
+            }
+        }
 
-    if (success) {
-        alert('✅ Película guardada exitosamente');
-        document.getElementById('movieForm').reset();
-        loadMovies(); // opcional: recargar lista en panel
-    } else {
-        alert('❌ Error al guardar película');
-    }
+        const movieData = {
+            title: document.getElementById('movieTitle').value,
+            description: document.getElementById('movieDescription').value,
+            genre: document.getElementById('movieGenre').value,
+            duration: parseInt(document.getElementById('movieDuration').value),
+            startDate: document.getElementById('movieStartDate').value,
+            endDate: document.getElementById('movieEndDate').value,
+            imageUrl: document.getElementById('movieImage').value,
+            schedules: schedules, // ← Aquí van los horarios
+            status: 'cartelera'
+        };
+
+        const success = await saveMovie(movieData);
+        if (success) {
+            alert('✅ Película guardada exitosamente');
+            movieForm.reset();
+            // Limpiar horarios
+            document.getElementById('scheduleInputs').innerHTML = `
+                <div class="schedule-item">
+                    <input type="text" class="schedule-day" placeholder="Ej: Sábado 4" required>
+                    <input type="time" class="schedule-time" required>
+                </div>
+            `;
+            loadMovies(); // opcional: recargar lista en panel
+        } else {
+            alert('❌ Error al guardar película');
+        }
+    });
 }
 
-// Manejar el guardado de promociones como producto (se guardan en la categoría "combos" para aparecer en dulcería)
+// Manejar el guardado de promociones
 function handleSavePromotion(e) {
     e.preventDefault();
 
-    const title = document.getElementById('promotionTitle')?.value?.trim() || 'Promoción';
-    const description = document.getElementById('promotionDescription')?.value?.trim() || '';
-    const discount = document.getElementById('promotionDiscount')?.value;
-    const endDate = document.getElementById('promotionEndDate')?.value;
+    const title = getElementValue('promotionTitle', 'Promoción');
+    const description = getElementValue('promotionDescription');
+    const discount = getElementValue('promotionDiscount');
+    const endDate = getElementValue('promotionEndDate');
 
-    // Convertir descuento a representación de precio/etiqueta (ej. "20% OFF")
     const precioLabel = discount ? `${parseFloat(discount)}% OFF` : '';
 
     const productData = {
         nombre: title,
         precio: precioLabel || '—',
-        imagen: 'default', // sin imagen por ahora
+        imagen: 'default',
         descripcion: description,
-        // campos adicionales que quieras conservar
         meta: {
             tipo: 'promocion',
             endDate: endDate || null
@@ -172,18 +229,18 @@ function handleSavePromotion(e) {
         stored[catKey].push(productData);
 
         localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
-        // marcar última categoría para que dulcería la active automáticamente
         localStorage.setItem('dulceriaLastCategory', catKey);
 
         alert('✅ Promoción guardada como producto en la categoría "combos"');
-        document.getElementById('promotionForm').reset();
+        const form = document.getElementById('promotionForm');
+        if (form) form.reset();
     } catch (err) {
         console.error('Error guardando promoción en localStorage:', err);
         alert('❌ Error al guardar promoción');
     }
 }
 
-// Normalizar categorías para que coincidan con las keys de dulceria.js
+// Normalizar categorías
 function normalizeCategory(input) {
     const map = {
         'bebida': 'bebidas',
@@ -206,15 +263,15 @@ function normalizeCategory(input) {
     return map[key] || key || 'otros';
 }
 
-// Manejar el guardado de productos de dulcería (guarda en localStorage)
+// Manejar el guardado de productos de dulcería
 async function handleSaveProduct(e) {
     e.preventDefault();
 
-    const name = document.getElementById('productName').value.trim();
-    const description = document.getElementById('productDescription').value.trim();
-    const priceValue = document.getElementById('productPrice').value;
-    const stockValue = document.getElementById('productStock').value;
-    const rawCategory = document.getElementById('productCategory').value;
+    const name = getElementValue('productName');
+    const description = getElementValue('productDescription');
+    const priceValue = getElementValue('productPrice');
+    const stockValue = getElementValueAsNumber('productStock', 0);
+    const rawCategory = getElementValue('productCategory', 'otros');
 
     const catKey = normalizeCategory(rawCategory);
 
@@ -223,9 +280,9 @@ async function handleSaveProduct(e) {
     const productData = {
         nombre: name || 'Sin nombre',
         precio: price,
-        imagen: 'default', // puedes agregar campo para URL/filename si lo deseas
+        imagen: 'default',
         descripcion: description || '',
-        stock: stockValue ? parseInt(stockValue, 10) : 0
+        stock: stockValue
     };
 
     try {
@@ -240,66 +297,80 @@ async function handleSaveProduct(e) {
         localStorage.setItem('dulceriaLastCategory', catKey);
 
         alert('✅ Producto guardado localmente en la categoría: ' + catKey);
-        document.getElementById('productForm').reset();
-
-        // Opcional: si estás en el panel y quieres que la dulcería refleje de inmediato en otra pestaña,
-        // los cambios quedan en localStorage; al abrir dulceria.html o recargarla se mostrarán.
+        const form = document.getElementById('productForm');
+        if (form) form.reset();
     } catch (err) {
         console.error('Error guardando producto en localStorage:', err);
         alert('❌ Error al guardar producto');
     }
 }
 
-
-// Cerrar sesión
-document.getElementById('logoutBtn').addEventListener('click', async () => {
-    try {
-        await signOut(auth);
-        sessionStorage.clear();
-        console.log("✅ Sesión cerrada");
-        window.location.href = "index.html";
-    } catch (error) {
-        console.error('❌ Error al cerrar sesión:', error);
+// Inicializar botón de logout
+function initializeLogout() {
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+                sessionStorage.clear();
+                console.log("✅ Sesión cerrada");
+                window.location.href = "index.html";
+            } catch (error) {
+                console.error('❌ Error al cerrar sesión:', error);
+                alert('Error al cerrar sesión: ' + error.message);
+            }
+        });
+    } else {
+        console.warn("⚠️ Botón 'logoutBtn' no encontrado");
     }
-});
+}
 
 // Cargar películas y mostrarlas en la lista
 async function loadMovies() {
-    const movies = await getMovies();
-    const moviesList = document.getElementById('moviesList');
-    
-    if (!moviesList) return;
-    
-    moviesList.innerHTML = '';
-    
-    if (movies.length === 0) {
-        moviesList.innerHTML = '<p style="color: white; text-align: center;">No hay películas registradas</p>';
-        return;
-    }
-    
-    movies.forEach(movie => {
-        const movieElement = document.createElement('div');
-        movieElement.className = 'item-card';
-
-        // Determinar el estado de la película
-        const today = new Date().toISOString().split('T')[0];
-        let statusBadge = '';
-        if (movie.endDate < today) {
-            statusBadge = `<span class="estado-badge estado-finalizada">Finalizada</span>`;
-        } else if (movie.startDate > today) {
-            statusBadge = `<span class="estado-badge estado-proximo">Próximamente</span>`;
-        } else {
-            statusBadge = `<span class="estado-badge estado-cartelera">En Cartelera</span>`;
+    try {
+        const movies = await getMovies();
+        const moviesList = document.getElementById('moviesList');
+        
+        if (!moviesList) {
+            console.warn("⚠️ Elemento 'moviesList' no encontrado");
+            return;
         }
+        
+        moviesList.innerHTML = '';
+        
+        if (movies.length === 0) {
+            moviesList.innerHTML = '<p style="color: white; text-align: center;">No hay películas registradas</p>';
+            return;
+        }
+        
+        movies.forEach(movie => {
+            const movieElement = document.createElement('div');
+            movieElement.className = 'item-card';
 
-        movieElement.innerHTML = `
-            <h4>${movie.title} ${statusBadge}</h4>
-            <p><strong>Director:</strong> ${movie.director}</p>
-            <p><strong>Género:</strong> ${movie.genre}</p>
-            <p><strong>Duración:</strong> ${movie.duration} minutos</p>
-            <p><strong>Desde:</strong> ${movie.startDate} <strong>Hasta:</strong> ${movie.endDate}</p>
-            <p>${movie.description.substring(0, 100)}...</p>
-        `;
-        moviesList.appendChild(movieElement);
-    });
+            // Determinar el estado de la película
+            const today = new Date().toISOString().split('T')[0];
+            let statusBadge = '';
+            if (movie.endDate < today) {
+                statusBadge = `<span class="estado-badge estado-finalizada">Finalizada</span>`;
+            } else if (movie.startDate > today) {
+                statusBadge = `<span class="estado-badge estado-proximo">Próximamente</span>`;
+            } else {
+                statusBadge = `<span class="estado-badge estado-cartelera">En Cartelera</span>`;
+            }
+
+            movieElement.innerHTML = `
+                <h4>${movie.title} ${statusBadge}</h4>
+                <p><strong>Director:</strong> ${movie.director}</p>
+                <p><strong>Género:</strong> ${movie.genre}</p>
+                <p><strong>Duración:</strong> ${movie.duration} minutos</p>
+                <p><strong>Desde:</strong> ${movie.startDate} <strong>Hasta:</strong> ${movie.endDate}</p>
+                <p>${movie.description.substring(0, 100)}...</p>
+            `;
+            moviesList.appendChild(movieElement);
+        });
+        
+        console.log(`✅ ${movies.length} películas cargadas`);
+    } catch (error) {
+        console.error('❌ Error cargando películas:', error);
+    }
 }
