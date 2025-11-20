@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - CineStar</title>
+    <link rel="stylesheet" href="CSS/Index_Style.css">
+    <link rel="stylesheet" href="CSS/panel.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Playball&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img src="IMG/Star.png" alt="Logo de CineStar">
+        <h1>CineStar - Panel de Control</h1>
+        <div class="user-info">
+            <span id="userName"></span>
+            <span id="userRole"></span>
+            <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </header>
+
+    <div class="panel-container">
+        <div class="panel-panel">
+            <!-- Solo visible para admin -->
+            <div id="adminSection" class="admin-section" style="display: none;">
+                <h2>Gestión de Usuarios (Solo Admin)</h2>
+                <form id="registerEmployeeForm" class="panel-form">
+                    <h3>Registrar Nuevo Empleado</h3>
+                    <input type="email" id="employeeEmail" placeholder="Correo del empleado" required>
+                    <input type="password" id="employeePassword" placeholder="Contraseña" required>
+                    <input type="text" id="employeeFirstName" placeholder="Nombre" required>
+                    <input type="text" id="employeeLastName" placeholder="Apellido" required>
+                    <button type="submit" class="btn-panel">Registrar Empleado</button>
+                </form>
+            </div>
+
+            <div class="panel-tabs">
+                <button class="tab-btn active" data-tab="peliculas">Películas</button>
+                <button class="tab-btn" data-tab="promociones">Promociones</button>
+                <button class="tab-btn" data-tab="dulceria">Dulcería</button>
+            </div>
+        
+            <div class="tab-content active" id="peliculas">
+                <form id="movieForm" class="panel-form">
+                    <h3>Agregar Película</h3>
+                    <input type="text" id="movieTitle" placeholder="Título de la película" required>
+                    <textarea id="movieDescription" placeholder="Descripción" required></textarea>
+                    <input type="text" id="movieGenre" placeholder="Género" required>
+                    <input type="number" id="movieDuration" placeholder="Duración (minutos)" required>
+                    <input type="date" id="movieStartDate" placeholder="Fecha inicio" required>
+                    <input type="date" id="movieEndDate" placeholder="Fecha fin" required>
+                    <input type="text" id="movieImage" placeholder="URL de la imagen">
+                    <button type="submit" class="btn-panel">Guardar Película</button>
+                </form>
+                
+                <div id="moviesList" class="items-list">
+                  <!-- Lista de películas se cargará aquí -->  
+                </div>
+            </div>
+            
+            <div class="tab-content" id="promociones">
+                <form id="promotionForm" class="panel-form">
+                    <h3>Agregar Promoción</h3>
+                    <input type="text" id="promotionTitle" placeholder="Título de la promoción" required>
+                    <textarea id="promotionDescription" placeholder="Descripción" required></textarea>
+                    <input type="number" id="promotionDiscount" placeholder="Descuento (%)" required>
+                    <input type="date" id="promotionEndDate" placeholder="Fecha de expiración" required>
+                    <button type="submit" class="btn-panel">Guardar Promoción</button>
+                </form>
+            </div>
+            
+            <div class="tab-content" id="dulceria">
+                <form id="productForm" class="panel-form">
+                    <h3>Agregar Producto a Dulcería</h3>
+                    <input type="text" id="productName" placeholder="Nombre del producto" required>
+                    <textarea id="productDescription" placeholder="Descripción" required></textarea>
+                    <input type="number" id="productPrice" placeholder="Precio" step="0.01" required>
+                    <input type="number" id="productStock" placeholder="Stock disponible" required>
+                    <input type="text" id="productCategory" placeholder="Categoría (bebida, dulce, combo)" required>
+                    <button type="submit" class="btn-panel">Guardar Producto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="panel.js"></script>
+</body>
+</html>

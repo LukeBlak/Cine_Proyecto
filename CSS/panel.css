@@ -1,0 +1,206 @@
+/* panel.css - Estilos para el panel de control de CineStar */
+
+.panel-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #370617;
+    min-height: 80vh;
+}
+
+.panel-panel {
+    background-color: #03071E;
+    border-radius: 10px;
+    padding: 30px;
+    border: 2px solid #6A040F;
+}
+
+.panel-panel h2 {
+    color: white;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.user-info {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: white;
+    text-align: right;
+}
+
+.user-info span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.btn-logout {
+    background-color: #D00000;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.admin-section {
+    background-color: rgba(106, 4, 15, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px solid #6A040F;
+}
+
+.admin-section h2 {
+    color: #D00000;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.panel-tabs {
+    display: flex;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #6A040F;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    background-color: rgba(208, 0, 0, 0.1);
+}
+
+.tab-btn.active {
+    border-bottom-color: #D00000;
+    color: #D00000;
+    font-weight: bold;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.panel-form {
+    background-color: rgba(106, 4, 15, 0.1);
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px solid #6A040F;
+}
+
+.panel-form h3 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.panel-form input,
+.panel-form textarea,
+.panel-form select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #6A040F;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.panel-form input::placeholder,
+.panel-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-panel {
+    background-color: #6A040F;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.btn-panel:hover {
+    background-color: #D00000;
+    transform: translateY(-2px);
+}
+
+.items-list {
+    display: grid;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.item-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #6A040F;
+    color: white;
+}
+
+.item-card h4 {
+    color: #D00000;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.item-card p {
+    margin: 5px 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.estado-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.estado-cartelera {
+    background-color: #28a745;
+    color: white;
+}
+
+.estado-proximo {
+    background-color: #ffc107;
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .panel-tabs {
+        flex-direction: column;
+    }
+    
+    .user-info {
+        position: static;
+        text-align: center;
+        margin-top: 10px;
+    }
+}

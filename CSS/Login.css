@@ -1,0 +1,150 @@
+/* login.css - Estilos para el formulario de login de CineStar */
+
+.login-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #370617;
+    min-height: 80vh;
+}
+
+.login-panel {
+    background-color: #03071E;
+    border-radius: 10px;
+    padding: 30px;
+    border: 2px solid #6A040F;
+}
+
+.login-panel h2 {
+    color: white;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.login-tabs {
+    display: flex;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #6A040F;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    background-color: rgba(208, 0, 0, 0.1);
+}
+
+.tab-btn.active {
+    border-bottom-color: #D00000;
+    color: #D00000;
+    font-weight: bold;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.login-form {
+    background-color: rgba(106, 4, 15, 0.1);
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px solid #6A040F;
+}
+
+.login-form input,
+.login-form textarea,
+.login-form select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #6A040F;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.login-form input::placeholder,
+.login-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-login {
+    background-color: #6A040F;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.btn-login:hover {
+    background-color: #D00000;
+    transform: translateY(-2px);
+}
+
+.btn-register {
+    background-color: #6A040F;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.btn-register:hover {
+    background-color: #D00000;
+    transform: translateY(-2px);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-bottom: 8px;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .login-tabs {
+        flex-direction: column;
+    }
+    
+    .login-container {
+        padding: 10px;
+    }
+    
+    .login-panel {
+        padding: 20px;
+    }
+}
