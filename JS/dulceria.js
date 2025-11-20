@@ -39,10 +39,18 @@ const mensaje = document.getElementById("mensaje");
 function mostrarProductos(categoria) {
     productosContainer.innerHTML = "";
 
+    // Si no existe la categoría, mostrar mensaje
+    if (!productos[categoria] || productos[categoria].length === 0) {
+        productosContainer.innerHTML = `<p style="color: white; text-align: center;">No hay productos en la categoría seleccionada</p>`;
+        mensaje.style.opacity = "0";
+        productosContainer.classList.add("visible");
+        return;
+    }
+
     productos[categoria].forEach(producto => {
         const productoDiv = document.createElement("div");
         productoDiv.className = "producto";
-        const imagenProducto = `IMG/${producto.imagen}.jpg`;
+        const imagenProducto = producto.imagen && producto.imagen !== 'default' ? `IMG/${producto.imagen}.jpg` : 'IMG/default.jpg';
         productoDiv.innerHTML = `
         <img src = "${imagenProducto}" alt = "${producto.nombre}" class = "productoImagen">
         <span>${producto.nombre}<br><strong>${producto.precio}</strong></span>
@@ -59,6 +67,25 @@ function mostrarProductos(categoria) {
     productosContainer.classList.add("visible");
 }
 
+// Cargar productos guardados en localStorage y fusionarlos con los por defecto
+function loadLocalProducts() {
+    try {
+        const STORAGE_KEY = 'dulceriaProducts';
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const stored = JSON.parse(raw);
+        Object.keys(stored).forEach(cat => {
+            // Normalizar clave a minúsculas
+            const key = cat.toLowerCase();
+            if (!productos[key]) productos[key] = [];
+            // push each saved product (evitar mutar referencias externas)
+            stored[cat].forEach(p => productos[key].push(p));
+        });
+    } catch (err) {
+        console.error('Error cargando productos desde localStorage:', err);
+    }
+}
+
 listaCategorias.addEventListener("click", (e) => {
     if (e.target.classList.contains("categoria")) {
         const categoria = e.target.dataset.category;
@@ -72,5 +99,30 @@ listaCategorias.addEventListener("click", (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Cargar productos añadidos desde el panel (localStorage)
+    loadLocalProducts();
+
+    // Si existe una categoría guardada, activarla; si no, activar la primera
+    const lastCat = localStorage.getItem('dulceriaLastCategory');
+    let activated = false;
+    if (lastCat) {
+        const btn = document.querySelector(`.categoria[data-category="${lastCat}"]`);
+        if (btn) {
+            btn.classList.add('active');
+            mostrarProductos(lastCat);
+            activated = true;
+        }
+    }
+
+    if (!activated) {
+        // activar la primera categoría visualmente y mostrar su contenido
+        const firstBtn = document.querySelector('.categoria');
+        if (firstBtn) {
+            firstBtn.classList.add('active');
+            const firstCat = firstBtn.dataset.category;
+            mostrarProductos(firstCat);
+        }
+    }
+
     mensaje.style.opacity = "1";
 });

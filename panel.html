@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,118 @@
     <link rel="stylesheet" href="CSS/Index_Style.css">
     <link rel="stylesheet" href="CSS/panel.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Playball&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Playball&display=swap"
+        rel="stylesheet">
+    <style>
+        :root{
+            --bg-dark: #0b0b0f;
+            --panel-bg: rgba(255,255,255,0.03);
+            --muted: #cbd5e1;
+            --accent: #6A040F;
+            --accent-contrast: #000;
+            --input-bg: rgba(255, 255, 255, 0.1);
+            --input-color: #0b0b0f;
+            
+        }
+        body{
+            background: linear-gradient(180deg, var(--bg-dark), #111217);
+            color: #ffffff;
+            font-family: 'Bitcount', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            margin: 0;
+        }
+        header {
+            /* mantener visibilidad del header */
+            background: transparent;
+            color: #fff;
+        }
+        .user-info span {
+            color: var(--muted);
+            margin-left: 8px;
+            display: inline-block;
+        }
+        .panel-container{
+            padding: 24px;
+            display: flex;
+            justify-content: center;
+        }
+        .panel-panel{
+            width: 100%;
+            max-width: 1100px;
+            background: var(--panel-bg);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+        }
+        .panel-tabs{
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+        .tab-btn{
+            background: rgba(255,255,255,0.04);
+            color: var(--muted);
+            border: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .tab-btn.active{
+            background: var(--accent);
+            color: var(--accent-contrast);
+            font-weight: 700;
+        }
+        .tab-content{ display: none; }
+        .tab-content.active{ display: block; }
+        .panel-form input,
+        .panel-form textarea,
+        .panel-form select {
+            width: 100%;
+            padding: 8px 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid rgba(0,0,0,0.15);
+            background: var(--input-bg);
+            color: var(--input-color);
+            box-sizing: border-box;
+        }
+        .panel-form textarea { min-height: 80px; resize: vertical; }
+        .btn-panel{
+            background: var(--accent);
+            color: var(--accent-contrast);
+            border: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        .items-list { margin-top: 14px; }
+        .item-card{
+            background: rgba(0,0,0,0.25);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .horarios-container label { color: var(--muted); }
+        select#productCategory { max-width: 320px; }
+        /* asegurar contraste del logout */
+        .btn-logout {
+            background: transparent;
+            color: var(--muted);
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        /* Responsivo básico */
+        @media (max-width: 700px){
+            .panel-panel { padding: 12px; }
+            .tab-btn { padding: 8px 10px; font-size: 14px; }
+        }
+    </style>
 </head>
+
 <body>
     <header>
         <img src="IMG/Star.png" alt="Logo de CineStar">
@@ -40,7 +151,7 @@
                 <button class="tab-btn" data-tab="promociones">Promociones</button>
                 <button class="tab-btn" data-tab="dulceria">Dulcería</button>
             </div>
-        
+
             <div class="tab-content active" id="peliculas">
                 <form id="movieForm" class="panel-form">
                     <h3>Agregar Película</h3>
@@ -50,15 +161,26 @@
                     <input type="number" id="movieDuration" placeholder="Duración (minutos)" required>
                     <input type="date" id="movieStartDate" placeholder="Fecha inicio" required>
                     <input type="date" id="movieEndDate" placeholder="Fecha fin" required>
-                    <input type="text" id="movieImage" placeholder="URL de la imagen">
+                    <input type="text" id="movieImage" placeholder="URL de la imagen" required>
+
+                    <!-- Horarios dinámicos -->
+                    <div class="horarios-container">
+                        <label>Horarios</label>
+                        <div id="scheduleInputs">
+                            <div class="schedule-item">
+                                <input type="text" class="schedule-day" placeholder="Ej: Sábado 4" required>
+                                <input type="time" class="schedule-time" required>
+                            </div>
+                        </div>
+                        <button type="button" id="addSchedule">+ Agregar horario</button>
+                    </div>
+
                     <button type="submit" class="btn-panel">Guardar Película</button>
                 </form>
-                
-                <div id="moviesList" class="items-list">
-                  <!-- Lista de películas se cargará aquí -->  
-                </div>
+
+                <div id="moviesList" class="items-list"></div>
             </div>
-            
+
             <div class="tab-content" id="promociones">
                 <form id="promotionForm" class="panel-form">
                     <h3>Agregar Promoción</h3>
@@ -69,7 +191,7 @@
                     <button type="submit" class="btn-panel">Guardar Promoción</button>
                 </form>
             </div>
-            
+
             <div class="tab-content" id="dulceria">
                 <form id="productForm" class="panel-form">
                     <h3>Agregar Producto a Dulcería</h3>
@@ -77,15 +199,23 @@
                     <textarea id="productDescription" placeholder="Descripción" required></textarea>
                     <input type="number" id="productPrice" placeholder="Precio" step="0.01" required>
                     <input type="number" id="productStock" placeholder="Stock disponible" required>
-                    <input type="text" id="productCategory" placeholder="Categoría (bebida, dulce, combo)" required>
+                    <label for="productCategory" style="display:none;">Categoría</label>
+                    <select id="productCategory" required>
+                        <option value="favoritos">FAVORITOS</option>
+                        <option value="combos">COMBOS</option>
+                        <option value="palomitas">PALOMITAS</option>
+                        <option value="bebidas">BEBIDAS</option>
+                        <option value="snacks">SNACKS</option>
+                        <option value="chocolates">CHOCOLATES</option>
+                        <option value="otros">OTROS</option>
+                    </select>
                     <button type="submit" class="btn-panel">Guardar Producto</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <script src="JS/peliculas-lector.js"></script>
     <script type="module" src="JS/panel.js"></script>
-    <script type="module" src="JS/menuHamburguesa.js"></script>
 </body>
+
 </html>

@@ -2,7 +2,6 @@
 import { auth } from './firebase-config.js';
 import { registerUser, signOut } from './service/authService.js';
 import { saveMovie, getMovies } from './service/moviesService.js';
-import { savePromotion, saveProduct } from './service/productsService.js';
 
 // Verificar autenticación
 document.addEventListener('DOMContentLoaded', function() {
@@ -37,135 +36,220 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("✅ Sección de admin visible");
         }
         
-        // Mostrar tab de registro de empleados
-        const employeeTab = document.querySelector('[data-tab="employees"]');
-        if (employeeTab) {
-            employeeTab.style.display = 'block';
-            console.log("✅ Tab de empleados visible");
-        }
+        // Cargar datos iniciales solo si es admin (por ejemplo, la lista de películas)
+        loadMovies();
+        
     } else {
-        console.log("ℹ️ Usuario es EMPLEADO");
+        // Si no es admin, se puede redirigir o limitar funcionalidades, pero por ahora solo muestra el rol
         document.getElementById('userRole').textContent = 'Empleado';
-        
-        // Ocultar sección de admin
-        const adminSection = document.getElementById('adminSection');
-        if (adminSection) {
-            adminSection.style.display = 'none';
-        }
-        
-        // Ocultar tab de registro de empleados
-        const employeeTab = document.querySelector('[data-tab="employees"]');
-        if (employeeTab) {
-            employeeTab.style.display = 'none';
-        }
+        console.log("✅ Usuario es Empleado, acceso limitado/sólo visualización");
     }
 
-    // Cargar películas
-    loadMovies();
+    // Inicializar listeners de los formularios
+    initializeForms();
+    initializeTabs();
 });
 
-// Manejo de pestañas
-document.querySelectorAll('.tab-btn').forEach(button => {
-    button.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-        
-        button.classList.add('active');
-        const tabId = button.getAttribute('data-tab');
-        document.getElementById(tabId).classList.add('active');
-    });
-});
+// Inicializar pestañas de navegación
+function initializeTabs() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
 
-// Registrar empleado (solo admin)
-const registerForm = document.getElementById('registerEmployeeForm');
-if (registerForm) {
-    registerForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const userRole = sessionStorage.getItem('userRole');
-        console.log("Intentando registrar empleado. Rol actual:", userRole);
-        
-        if (userRole !== 'Admin' && userRole !== 'admin') {
-            alert('❌ No tienes permisos para registrar empleados');
-            return;
-        }
-        
-        const email = document.getElementById('employeeEmail').value;
-        const password = document.getElementById('employeePassword').value;
-        const firstName = document.getElementById('employeeFirstName').value;
-        const lastName = document.getElementById('employeeLastName').value;
-        
-        console.log("Registrando empleado:", email);
-        
-        const result = await registerUser(email, password, firstName, lastName, 'empleado');
-        
-        if (result.success) {
-            alert('✅ Empleado registrado exitosamente');
-            document.getElementById('registerEmployeeForm').reset();
-        } else {
-            alert('❌ Error al registrar empleado: ' + result.error);
-        }
-    });
-}
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Desactivar todas las pestañas y contenidos
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
 
-// Guardar película
-const movieForm = document.getElementById('movieForm');
-if (movieForm) {
-    // Agregar horarios dinámicamente
-    document.getElementById('addSchedule').addEventListener('click', () => {
-        const container = document.getElementById('scheduleInputs');
-        const div = document.createElement('div');
-        div.className = 'schedule-item';
-        div.innerHTML = `
-            <input type="text" class="schedule-day" placeholder="Ej: Domingo 5" required>
-            <input type="time" class="schedule-time" required>
-        `;
-        container.appendChild(div);
-    });
+            // Activar la pestaña y el contenido seleccionados
+            button.classList.add('active');
+            const targetId = button.getAttribute('data-tab');
+            document.getElementById(targetId).classList.add('active');
 
-    movieForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        // Recolectar horarios
-        const scheduleItems = document.querySelectorAll('.schedule-item');
-        const schedules = [];
-        for (const item of scheduleItems) {
-            const day = item.querySelector('.schedule-day').value;
-            const time = item.querySelector('.schedule-time').value;
-            if (day && time) {
-                schedules.push({ day, time });
+            // Cargar datos específicos al cambiar de pestaña si es necesario
+            if (targetId === 'peliculas') {
+                loadMovies();
             }
-        }
-
-        const movieData = {
-            title: document.getElementById('movieTitle').value,
-            description: document.getElementById('movieDescription').value,
-            genre: document.getElementById('movieGenre').value,
-            duration: parseInt(document.getElementById('movieDuration').value),
-            startDate: document.getElementById('movieStartDate').value,
-            endDate: document.getElementById('movieEndDate').value,
-            imageUrl: document.getElementById('movieImage').value,
-            schedules: schedules, // ← Aquí van los horarios
-            status: 'cartelera'
-        };
-
-        const success = await saveMovie(movieData);
-        if (success) {
-            alert('✅ Película guardada exitosamente');
-            movieForm.reset();
-            // Limpiar horarios
-            document.getElementById('scheduleInputs').innerHTML = `
-                <div class="schedule-item">
-                    <input type="text" class="schedule-day" placeholder="Ej: Sábado 4" required>
-                    <input type="time" class="schedule-time" required>
-                </div>
-            `;
-            loadMovies(); // opcional: recargar lista en panel
-        } else {
-            alert('❌ Error al guardar película');
-        }
+            // Aquí se pueden agregar más llamadas para cargar promociones o productos de dulcería
+        });
     });
+
+    // Activar la primera pestaña por defecto al cargar
+    if (tabButtons.length > 0) {
+        tabButtons[0].click();
+    }
 }
+
+// Inicializar formularios de administración
+function initializeForms() {
+    // 1. Formulario de Películas
+    const movieForm = document.getElementById('movieForm');
+    if (movieForm) {
+        movieForm.addEventListener('submit', handleSaveMovie);
+    }
+    
+    // 2. Formulario de Promociones
+    const promotionForm = document.getElementById('promotionForm');
+    if (promotionForm) {
+        promotionForm.addEventListener('submit', handleSavePromotion);
+    }
+    
+    // 3. Formulario de Productos de Dulcería
+    const productForm = document.getElementById('productForm');
+    if (productForm) {
+        productForm.addEventListener('submit', handleSaveProduct);
+    }
+}
+
+// === HANDLERS DE FORMULARIOS ===
+
+// Manejar el guardado de películas
+async function handleSaveMovie(e) {
+    e.preventDefault();
+    
+    const title = document.getElementById('movieTitle').value;
+    const genre = document.getElementById('movieGenre').value;
+    const duration = document.getElementById('movieDuration').value;
+    const description = document.getElementById('movieSynopsis').value;
+    const startDate = document.getElementById('movieStartDate').value;
+    const endDate = document.getElementById('movieEndDate').value;
+    const director = document.getElementById('movieDirector').value;
+    const image = document.getElementById('movieImage').value;
+
+    const movieData = {
+        title,
+        genre,
+        duration: parseInt(duration), // Convertir a número
+        description,
+        startDate,
+        endDate,
+        director,
+        image
+    };
+
+    const success = await saveMovie(movieData);
+
+    if (success) {
+        alert('✅ Película guardada exitosamente');
+        document.getElementById('movieForm').reset();
+        loadMovies(); // opcional: recargar lista en panel
+    } else {
+        alert('❌ Error al guardar película');
+    }
+}
+
+// Manejar el guardado de promociones como producto (se guardan en la categoría "combos" para aparecer en dulcería)
+function handleSavePromotion(e) {
+    e.preventDefault();
+
+    const title = document.getElementById('promotionTitle')?.value?.trim() || 'Promoción';
+    const description = document.getElementById('promotionDescription')?.value?.trim() || '';
+    const discount = document.getElementById('promotionDiscount')?.value;
+    const endDate = document.getElementById('promotionEndDate')?.value;
+
+    // Convertir descuento a representación de precio/etiqueta (ej. "20% OFF")
+    const precioLabel = discount ? `${parseFloat(discount)}% OFF` : '';
+
+    const productData = {
+        nombre: title,
+        precio: precioLabel || '—',
+        imagen: 'default', // sin imagen por ahora
+        descripcion: description,
+        // campos adicionales que quieras conservar
+        meta: {
+            tipo: 'promocion',
+            endDate: endDate || null
+        }
+    };
+
+    try {
+        const STORAGE_KEY = 'dulceriaProducts';
+        const raw = localStorage.getItem(STORAGE_KEY);
+        const stored = raw ? JSON.parse(raw) : {};
+
+        const catKey = 'combos';
+        if (!stored[catKey]) stored[catKey] = [];
+        stored[catKey].push(productData);
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+        // marcar última categoría para que dulcería la active automáticamente
+        localStorage.setItem('dulceriaLastCategory', catKey);
+
+        alert('✅ Promoción guardada como producto en la categoría "combos"');
+        document.getElementById('promotionForm').reset();
+    } catch (err) {
+        console.error('Error guardando promoción en localStorage:', err);
+        alert('❌ Error al guardar promoción');
+    }
+}
+
+// Normalizar categorías para que coincidan con las keys de dulceria.js
+function normalizeCategory(input) {
+    const map = {
+        'bebida': 'bebidas',
+        'bebidas': 'bebidas',
+        'combo': 'combos',
+        'combos': 'combos',
+        'palomita': 'palomitas',
+        'palomitas': 'palomitas',
+        'snack': 'snacks',
+        'snacks': 'snacks',
+        'dulce': 'snacks',
+        'dulceria': 'snacks',
+        'chocolate': 'chocolates',
+        'chocolates': 'chocolates',
+        'favorito': 'favoritos',
+        'favoritos': 'favoritos',
+        'otros': 'otros'
+    };
+    const key = (input || '').trim().toLowerCase();
+    return map[key] || key || 'otros';
+}
+
+// Manejar el guardado de productos de dulcería (guarda en localStorage)
+async function handleSaveProduct(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('productName').value.trim();
+    const description = document.getElementById('productDescription').value.trim();
+    const priceValue = document.getElementById('productPrice').value;
+    const stockValue = document.getElementById('productStock').value;
+    const rawCategory = document.getElementById('productCategory').value;
+
+    const catKey = normalizeCategory(rawCategory);
+
+    const price = isNaN(parseFloat(priceValue)) ? priceValue : `$${parseFloat(priceValue).toFixed(2)}`;
+
+    const productData = {
+        nombre: name || 'Sin nombre',
+        precio: price,
+        imagen: 'default', // puedes agregar campo para URL/filename si lo deseas
+        descripcion: description || '',
+        stock: stockValue ? parseInt(stockValue, 10) : 0
+    };
+
+    try {
+        const STORAGE_KEY = 'dulceriaProducts';
+        const raw = localStorage.getItem(STORAGE_KEY);
+        const stored = raw ? JSON.parse(raw) : {};
+
+        if (!stored[catKey]) stored[catKey] = [];
+        stored[catKey].push(productData);
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+        localStorage.setItem('dulceriaLastCategory', catKey);
+
+        alert('✅ Producto guardado localmente en la categoría: ' + catKey);
+        document.getElementById('productForm').reset();
+
+        // Opcional: si estás en el panel y quieres que la dulcería refleje de inmediato en otra pestaña,
+        // los cambios quedan en localStorage; al abrir dulceria.html o recargarla se mostrarán.
+    } catch (err) {
+        console.error('Error guardando producto en localStorage:', err);
+        alert('❌ Error al guardar producto');
+    }
+}
+
 
 // Cerrar sesión
 document.getElementById('logoutBtn').addEventListener('click', async () => {
@@ -179,7 +263,7 @@ document.getElementById('logoutBtn').addEventListener('click', async () => {
     }
 });
 
-// Cargar películas
+// Cargar películas y mostrarlas en la lista
 async function loadMovies() {
     const movies = await getMovies();
     const moviesList = document.getElementById('moviesList');
@@ -196,12 +280,25 @@ async function loadMovies() {
     movies.forEach(movie => {
         const movieElement = document.createElement('div');
         movieElement.className = 'item-card';
+
+        // Determinar el estado de la película
+        const today = new Date().toISOString().split('T')[0];
+        let statusBadge = '';
+        if (movie.endDate < today) {
+            statusBadge = `<span class="estado-badge estado-finalizada">Finalizada</span>`;
+        } else if (movie.startDate > today) {
+            statusBadge = `<span class="estado-badge estado-proximo">Próximamente</span>`;
+        } else {
+            statusBadge = `<span class="estado-badge estado-cartelera">En Cartelera</span>`;
+        }
+
         movieElement.innerHTML = `
-            <h4>${movie.title} <span class="estado-badge estado-cartelera">En Cartelera</span></h4>
+            <h4>${movie.title} ${statusBadge}</h4>
+            <p><strong>Director:</strong> ${movie.director}</p>
             <p><strong>Género:</strong> ${movie.genre}</p>
             <p><strong>Duración:</strong> ${movie.duration} minutos</p>
             <p><strong>Desde:</strong> ${movie.startDate} <strong>Hasta:</strong> ${movie.endDate}</p>
-            <p>${movie.description}</p>
+            <p>${movie.description.substring(0, 100)}...</p>
         `;
         moviesList.appendChild(movieElement);
     });
