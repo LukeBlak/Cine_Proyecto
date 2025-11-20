@@ -840,6 +840,7 @@ section h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 .miembro:hover {
@@ -867,6 +868,22 @@ section h2 {
   font-family: "Lato", sans-serif;
   line-height: 1.5;
   margin-bottom: 20px;
+}
+
+.miembro img {
+  width: 150px;
+  height: 150px; 
+  object-fit: cover; 
+  margin-top: 10px; 
+  margin-bottom: 20px; 
+  border: 3px solid #D00000; 
+  box-shadow: 0 0 15px rgba(208, 0, 0, 0.4); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.miembro img:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 0 25px rgba(208, 0, 0, 0.6); /* Sombra más pronunciada al pasar el ratón */
 }
 
 .agradecimiento {
