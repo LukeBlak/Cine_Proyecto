@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('userRole').textContent = userRole === 'admin' ? 'Administrador General' : 'Empleado';
     
     // Mostrar sección de admin solo si es admin
-    if (role === 'admin') {
+    if (userRole === 'admin') {
         document.getElementById('adminSection').style.display = 'block';
     }
 
