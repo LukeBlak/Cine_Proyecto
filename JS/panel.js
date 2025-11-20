@@ -111,9 +111,32 @@ if (registerForm) {
 // Guardar película
 const movieForm = document.getElementById('movieForm');
 if (movieForm) {
+    // Agregar horarios dinámicamente
+    document.getElementById('addSchedule').addEventListener('click', () => {
+        const container = document.getElementById('scheduleInputs');
+        const div = document.createElement('div');
+        div.className = 'schedule-item';
+        div.innerHTML = `
+            <input type="text" class="schedule-day" placeholder="Ej: Domingo 5" required>
+            <input type="time" class="schedule-time" required>
+        `;
+        container.appendChild(div);
+    });
+
     movieForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
+        // Recolectar horarios
+        const scheduleItems = document.querySelectorAll('.schedule-item');
+        const schedules = [];
+        for (const item of scheduleItems) {
+            const day = item.querySelector('.schedule-day').value;
+            const time = item.querySelector('.schedule-time').value;
+            if (day && time) {
+                schedules.push({ day, time });
+            }
+        }
+
         const movieData = {
             title: document.getElementById('movieTitle').value,
             description: document.getElementById('movieDescription').value,
@@ -121,16 +144,23 @@ if (movieForm) {
             duration: parseInt(document.getElementById('movieDuration').value),
             startDate: document.getElementById('movieStartDate').value,
             endDate: document.getElementById('movieEndDate').value,
-            imageUrl: document.getElementById('movieImage').value || '',
+            imageUrl: document.getElementById('movieImage').value,
+            schedules: schedules, // ← Aquí van los horarios
             status: 'cartelera'
         };
-        
-        const status = await saveMovie(movieData);
-        
-        if (status) {
+
+        const success = await saveMovie(movieData);
+        if (success) {
             alert('✅ Película guardada exitosamente');
-            document.getElementById('movieForm').reset();
-            loadMovies();
+            movieForm.reset();
+            // Limpiar horarios
+            document.getElementById('scheduleInputs').innerHTML = `
+                <div class="schedule-item">
+                    <input type="text" class="schedule-day" placeholder="Ej: Sábado 4" required>
+                    <input type="time" class="schedule-time" required>
+                </div>
+            `;
+            loadMovies(); // opcional: recargar lista en panel
         } else {
             alert('❌ Error al guardar película');
         }

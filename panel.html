@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,11 @@
     <link rel="stylesheet" href="CSS/Index_Style.css">
     <link rel="stylesheet" href="CSS/panel.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Playball&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Playball&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <header>
         <img src="IMG/Star.png" alt="Logo de CineStar">
@@ -40,7 +44,7 @@
                 <button class="tab-btn" data-tab="promociones">Promociones</button>
                 <button class="tab-btn" data-tab="dulceria">Dulcería</button>
             </div>
-        
+
             <div class="tab-content active" id="peliculas">
                 <form id="movieForm" class="panel-form">
                     <h3>Agregar Película</h3>
@@ -50,15 +54,26 @@
                     <input type="number" id="movieDuration" placeholder="Duración (minutos)" required>
                     <input type="date" id="movieStartDate" placeholder="Fecha inicio" required>
                     <input type="date" id="movieEndDate" placeholder="Fecha fin" required>
-                    <input type="text" id="movieImage" placeholder="URL de la imagen">
+                    <input type="text" id="movieImage" placeholder="URL de la imagen" required>
+
+                    <!-- Horarios dinámicos -->
+                    <div class="horarios-container">
+                        <label>Horarios</label>
+                        <div id="scheduleInputs">
+                            <div class="schedule-item">
+                                <input type="text" class="schedule-day" placeholder="Ej: Sábado 4" required>
+                                <input type="time" class="schedule-time" required>
+                            </div>
+                        </div>
+                        <button type="button" id="addSchedule">+ Agregar horario</button>
+                    </div>
+
                     <button type="submit" class="btn-panel">Guardar Película</button>
                 </form>
-                
-                <div id="moviesList" class="items-list">
-                  <!-- Lista de películas se cargará aquí -->  
-                </div>
+
+                <div id="moviesList" class="items-list"></div>
             </div>
-            
+
             <div class="tab-content" id="promociones">
                 <form id="promotionForm" class="panel-form">
                     <h3>Agregar Promoción</h3>
@@ -69,7 +84,7 @@
                     <button type="submit" class="btn-panel">Guardar Promoción</button>
                 </form>
             </div>
-            
+
             <div class="tab-content" id="dulceria">
                 <form id="productForm" class="panel-form">
                     <h3>Agregar Producto a Dulcería</h3>
@@ -86,4 +101,5 @@
 
     <script type="module" src="JS/panel.js"></script>
 </body>
+
 </html>

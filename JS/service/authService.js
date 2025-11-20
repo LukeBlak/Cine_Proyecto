@@ -1,4 +1,4 @@
-// js/service/auth.js
+// JS/service/auth.js
 import { auth, db } from '../firebase-config.js';
 import { 
     createUserWithEmailAndPassword, 
@@ -11,6 +11,7 @@ import {
     setDoc 
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
+// Registrar NUEVO EMPLEADO (solo para admin)
 export async function registerUser(email, password, firstName, lastName, role = 'empleado') {
     try {
         console.log("Creando usuario en Auth...");
@@ -18,26 +19,25 @@ export async function registerUser(email, password, firstName, lastName, role = 
         const user = userCredential.user;
         console.log("Usuario creado en Auth, UID:", user.uid);
         
-        console.log("Creando documento en Firestore...");
+        console.log("Creando documento en Firestore en colección 'empleados'...");
         await setDoc(doc(db, "empleados", user.uid), {
             firstName,
             lastName,
-            password,
             email,
-            role: role,
+            password, // ⚠️ Solo para pruebas - ¡ELIMINAR EN PRODUCCIÓN!
+            role: role.toLowerCase().trim(), // siempre 'empleado'
             createdAt: new Date()
         });
-        console.log("Documento creado en Firestore");
+        console.log("Documento creado en Firestore (colección 'empleados')");
         
-        return true;
+        return { success: true };
     } catch(error) {
         console.error("Error completo en registerUser:", error);
-        console.error("Código de error:", error.code);
-        console.error("Mensaje de error:", error.message);
-        return false;
+        return { success: false, error: error.message };
     }
 }
 
+// Iniciar sesión: busca primero en 'admin', luego en 'empleados'
 export async function loginUser(email, password) {
     try {
         console.log("Intentando autenticar usuario...");
@@ -45,15 +45,34 @@ export async function loginUser(email, password) {
         const user = userCredential.user;
         console.log("Usuario autenticado, UID:", user.uid);
 
-        console.log("Buscando datos en Firestore...");
-        const dataUser = await getDoc(doc(db, "admin", user.uid));
+        // Buscar en colección 'admin'
+        let userData = null;
+        let userRole = null;
 
-        if (dataUser.exists()) {
-            console.log('Usuario encontrado en Firestore');
-            return { ...dataUser.data(), uid: user.uid };
+        const adminDoc = await getDoc(doc(db, "admin", user.uid));
+        if (adminDoc.exists()) {
+            userData = adminDoc.data();
+            userRole = 'admin';
+            console.log('✅ Usuario encontrado en colección "admin"');
         } else {
-            throw new Error('No se encontró el usuario en la base de datos');
+            // Si no está en admin, buscar en 'empleados'
+            const empleadoDoc = await getDoc(doc(db, "empleados", user.uid));
+            if (empleadoDoc.exists()) {
+                userData = empleadoDoc.data();
+                userRole = 'empleado';
+                console.log('✅ Usuario encontrado en colección "empleados"');
+            } else {
+                console.warn('❌ Usuario autenticado en Auth, pero NO existe en Firestore (ni en admin ni en empleados)');
+                return null;
+            }
         }
+
+        return { 
+            ...userData, 
+            uid: user.uid,
+            role: userRole // Aseguramos que el rol sea 'admin' o 'empleado'
+        };
+
     } catch (error) {
         console.error('Error al iniciar sesión:', error);
         console.error('Código:', error.code);
