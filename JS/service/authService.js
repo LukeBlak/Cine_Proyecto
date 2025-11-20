@@ -19,7 +19,7 @@ export async function registerUser(email, password, firstName, lastName, role = 
         console.log("Usuario creado en Auth, UID:", user.uid);
         
         console.log("Creando documento en Firestore...");
-        await setDoc(doc(db, "admin", user.uid), {
+        await setDoc(doc(db, "empleados", user.uid), {
             firstName,
             lastName,
             password,
