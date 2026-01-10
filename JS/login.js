@@ -1,5 +1,5 @@
 // js/login.js
-import { registerUser, loginUser } from "./service/authService.js";
+import { loginUser } from "./service/authService.js";
 
 
 // Login de usuario
